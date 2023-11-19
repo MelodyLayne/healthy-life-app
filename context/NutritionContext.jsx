@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext } from "react";
 
 const NutritionContext = createContext();
 
@@ -9,11 +9,19 @@ export const NutritionProvider = ({ children }) => {
     bmr: 0,
     total: 0,
   });
+  const [dailyMeal, setDailyMeal] = useState({
+    meal1: '',
+    meal2: '',
+    meal3: '',
+    meal4: '',
+    meal5: '',
+  });
+  const [addMeal, setAddMeal] = useState(false);
   const [mealCalories, setMealCalories] = useState(0);
   const [totalMacro, setTotalMacro] = useState({
-    protein: 0,
-    carbs: 0,
-    fat: 0,
+    protein: 40,
+    carbs: 12,
+    fat: 6,
   });
   const [mealMacro, setMealMacro] = useState({
     protein: {
@@ -43,6 +51,10 @@ export const NutritionProvider = ({ children }) => {
         setMealMacro,
         mealCalories,
         setMealCalories,
+        dailyMeal,
+        setDailyMeal,
+        addMeal,
+        setAddMeal,
       }}
     >
       {children}
